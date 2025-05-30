@@ -1,0 +1,10 @@
+planet(mercury, 58, no).
+planet(venus, 108, no).
+planet(earth, 150, no).
+planet(mars, 228, no).
+planet(jupiter, 778, yes).
+planet(saturn, 1430, yes).
+planet(uranus, 2870, yes).
+planet(neptune, 4500, yes).
+input 
+planet(Name, _, yes).

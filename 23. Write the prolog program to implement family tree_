@@ -1,0 +1,53 @@
+male(john).
+male(mike).
+male(steve).
+male(james).
+
+female(anna).
+female(lisa).
+female(emily).
+female(sarah).
+
+parent(john, mike).     
+parent(john, lisa).     
+parent(anna, mike).     
+parent(anna, lisa).     
+parent(mike, steve).    
+parent(lisa, emily).    
+parent(lisa, james).    
+parent(steve, sarah).   
+% 1. Father relationship
+father(Father, Child) :-
+    male(Father),
+    parent(Father, Child).
+
+% 2. Mother relationship
+mother(Mother, Child) :-
+    female(Mother),
+    parent(Mother, Child).
+
+% 3. Grandparent relationship
+grandparent(Grandparent, Grandchild) :-
+    parent(Grandparent, Parent),
+    parent(Parent, Grandchild).
+
+% 4. Sibling relationship
+sibling(Sibling1, Sibling2) :-
+    parent(Parent, Sibling1),
+    parent(Parent, Sibling2),
+    Sibling1 \= Sibling2.
+
+% 5. Aunt/Uncle relationship
+aunt_or_uncle(AuntUncle, Child) :-
+    parent(Parent, Child),
+    sibling(AuntUncle, Parent),
+    (female(AuntUncle); male(AuntUncle)).
+
+% 6. Cousin relationship
+cousin(Cousin1, Cousin2) :-
+    parent(Parent1, Cousin1),
+    parent(Parent2, Cousin2),
+    sibling(Parent1, Parent2),
+    Cousin1 \= Cousin2.
+input 
+father(X, mike)

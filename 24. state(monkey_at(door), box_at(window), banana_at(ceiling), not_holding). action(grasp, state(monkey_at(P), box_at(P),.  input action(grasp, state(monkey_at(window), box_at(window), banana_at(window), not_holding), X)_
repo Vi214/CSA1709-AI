@@ -1,0 +1,7 @@
+diet(Disease, Diet) :-
+    Disease == diabetes -> Diet = 'Low-sugar, high-fiber';
+    Disease == hypertension -> Diet = 'Low-sodium, DASH diet';
+    Disease == obesity -> Diet = 'Calorie-controlled, high-protein';
+    Diet = 'Balanced Mediterranean'.
+input 
+diet(diabetes, X).

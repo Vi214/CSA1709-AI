@@ -1,0 +1,6 @@
+state(monkey_at(door), box_at(window), banana_at(ceiling), not_holding).
+action(grasp, state(monkey_at(P), box_at(P), banana_at(P), not_holding),
+            state(monkey_at(P), box_at(P), banana_at(P), holding)).
+
+input
+action(grasp, state(monkey_at(window), box_at(window), banana_at(window), not_holding), X).

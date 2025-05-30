@@ -1,0 +1,22 @@
+fruit_color(apple, red).
+fruit_color(apple, green).       
+fruit_color(banana, yellow).
+fruit_color(grape, purple).
+fruit_color(orange, orange).
+
+query_fruit_colors(Fruit) :-
+    findall(Color, fruit_color(Fruit, Color), Colors),
+    format('~w can be: ~w~n', [Fruit, Colors]).
+
+% 2. Find all fruits of a specific color (single solution)
+query_color_fruits(Color) :-
+    findall(Fruit, fruit_color(Fruit, Color), Fruits),
+    format('~w fruits: ~w~n', [Color, Fruits]).
+
+% 3. Check if a fruit-color combo exists (returns true/false)
+check_combo(Fruit, Color) :-
+    fruit_color(Fruit, Color) -> 
+        format('Yes, ~w can be ~w~n', [Fruit, Color]) ;
+        format('No, ~w is never ~w~n', [Fruit, Color]).
+input 
+query_fruit_colors(apple).

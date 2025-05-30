@@ -1,0 +1,7 @@
+student(john, mr_smith, math, m101).
+student(mary, ms_clark, physics, p202).
+student(alice, mr_smith, math, m101).
+student(bob, ms_clark, chemistry, c303).
+input 
+student(john, Teacher, Subject, Code).
+student(Name, mr_smith, math, m101).

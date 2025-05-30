@@ -1,0 +1,44 @@
+% Graph edges (node1, node2, cost)
+edge(a, b, 1).
+edge(a, c, 4).
+edge(b, d, 2).
+edge(c, d, 5).
+edge(b, e, 12).
+edge(d, e, 3).
+
+% Heuristic (estimated cost to goal 'e')
+heuristic(a, 10).
+heuristic(b, 6).
+heuristic(c, 8).
+heuristic(d, 2).
+heuristic(e, 0).
+
+% Best First Search main predicate
+best_first(Start, Goal, Path) :-
+    best_first([[Start]], Goal, [], Path).
+
+% best_first(OpenPaths, Goal, Visited, Path)
+best_first([[Goal|RestPath]|_], Goal, _, Path) :-
+    reverse([Goal|RestPath], Path).
+
+best_first([CurrentPath|OtherPaths], Goal, Visited, Path) :-
+    CurrentPath = [CurrentNode|_],
+    findall(
+        [NextNode|CurrentPath],
+        ( edge(CurrentNode, NextNode, _), \+ member(NextNode, Visited) ),
+        NewPaths
+    ),
+    append(OtherPaths, NewPaths, AllPaths),
+    sort_paths_by_heuristic(AllPaths, SortedPaths),
+    best_first(SortedPaths, Goal, [CurrentNode|Visited], Path).
+
+% Sort paths by heuristic of their head node (lowest first)
+sort_paths_by_heuristic(Paths, Sorted) :-
+    map_list_to_pairs(path_heuristic, Paths, Pairs),
+    keysort(Pairs, SortedPairs),
+    pairs_values(SortedPairs, Sorted).
+
+path_heuristic([Node|_], H) :-
+    heuristic(Node, H).
+input 
+best_first(a, e, Path).

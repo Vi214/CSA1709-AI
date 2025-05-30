@@ -1,0 +1,14 @@
+can_fly(penguin, no).    
+can_fly(sparrow, yes).   
+can_fly(ostrich, no).    
+can_fly(eagle, yes).     
+can_fly(kiwi, no).       
+bird_can_fly(Bird) :-
+    can_fly(Bird, yes),
+    format('~w can fly!', [Bird]).
+
+bird_cannot_fly(Bird) :-
+    can_fly(Bird, no),
+    format('~w cannot fly.', [Bird]).
+input 
+bird_can_fly(sparrow).
