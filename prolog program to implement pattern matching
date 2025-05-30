@@ -1,0 +1,16 @@
+% Simple pattern facts
+pattern(hello).
+pattern(world).
+pattern(hello_world).
+pattern(goodbye_world).
+
+% Match pattern directly
+match_pattern(Input) :-
+    pattern(Input),
+    format('Pattern "~w" matched successfully.~n', [Input]).
+
+% Start the pattern matcher
+start :-
+    write('Enter a pattern to match (as an atom, e.g., hello_world): '),
+    read(Input),
+    (match_pattern(Input) -> true ; write('No pattern matched.'), nl).
