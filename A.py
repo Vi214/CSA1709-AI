@@ -104,3 +104,8 @@ if __name__ == "__main__":
     
     path = astar(grid, start, end)
     print("Path found:", path)
+
+output:
+Path found: [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]
+
+
