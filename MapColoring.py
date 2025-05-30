@@ -50,3 +50,19 @@ colors = ["Red", "Green", "Blue"]
 map_coloring = MapColoring(states, neighbors, colors)
 solution = map_coloring.get_coloring()
 print("Final Coloring:", solution)
+
+output:
+Trying to color A with Red
+A is colored with Red
+Trying to color B with Red
+Trying to color B with Green
+B is colored with Green
+Trying to color C with Red
+Trying to color C with Green
+Trying to color C with Blue
+C is colored with Blue
+Trying to color D with Red
+D is colored with Red
+Final Coloring: {'A': 'Red', 'B': 'Green', 'C': 'Blue', 'D': 'Red'}
+
+
