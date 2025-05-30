@@ -77,3 +77,19 @@ if __name__ == "__main__":
         print_solution(solution)
     else:
         print("No solution exists.")
+
+output:
+Solution found:
+[1, 2, 3]
+[4, 5, 6]
+[0, 7, 8]
+
+[1, 2, 3]
+[4, 5, 6]
+[7, 0, 8]
+
+[1, 2, 3]
+[4, 5, 6]
+[7, 8, 0]
+
+
