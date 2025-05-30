@@ -61,6 +61,18 @@ def print_solution(board):
             print(board[i][j], end=" ")
         print()
 
+output:
+1 0 0 0 0 0 0 0 
+0 0 0 0 1 0 0 0 
+0 0 0 0 0 0 0 1 
+0 0 0 0 0 1 0 0 
+0 0 1 0 0 0 0 0 
+0 0 0 0 0 0 1 0 
+0 1 0 0 0 0 0 0 
+0 0 0 1 0 0 0 0
+
+
+
 # Example usage:
 if __name__ == "__main__":
     n = 8  # Change this to solve for a different number of queens
