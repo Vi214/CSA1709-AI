@@ -1,0 +1,20 @@
+% Disease rules
+disease(cold) :- symptom(cough), symptom(sneezing), symptom(runny_nose).
+disease(flu) :- symptom(fever), symptom(cough), symptom(headache), symptom(body_ache).
+disease(covid19) :- symptom(fever), symptom(cough), symptom(loss_of_taste_or_smell).
+
+% Ask symptoms
+start :-
+    retractall(symptom(_)),
+    ask(cough),
+    ask(fever),
+    ask(sneezing),
+    ask(runny_nose),
+    ask(headache),
+    ask(body_ache),
+    ask(loss_of_taste_or_smell),
+    (disease(D) -> format('Diagnosis: ~w~n', [D]); write('No matching disease found.') ).
+
+ask(S) :-
+    format('Do you have ~w? (yes/no): ', [S]),
+    read(R), (R == yes -> assertz(symptom(S)); true).
