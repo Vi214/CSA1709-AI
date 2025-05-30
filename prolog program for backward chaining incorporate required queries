@@ -1,0 +1,38 @@
+% Dynamic predicate to store known symptoms
+:- dynamic(symptom/1).
+
+% Disease rules
+disease(cold) :-
+    verify(cough),
+    verify(sneezing),
+    verify(runny_nose).
+
+disease(flu) :-
+    verify(fever),
+    verify(cough),
+    verify(headache),
+    verify(body_ache).
+
+disease(covid19) :-
+    verify(fever),
+    verify(cough),
+    verify(loss_of_taste_or_smell).
+
+% Start diagnosis by querying diseases
+start :-
+    retractall(symptom(_)),
+    write('Backward Chaining Medical Diagnosis System'), nl,
+    (disease(D) ->
+        format('You may have: ~w~n', [D]);
+        write('No diagnosis could be made based on given symptoms.'), nl).
+
+% Ask the user only when needed
+verify(Symptom) :-
+    symptom(Symptom), !.  % already known
+
+verify(Symptom) :-
+    format('Do you have ~w? (yes/no): ', [Symptom]),
+    read(Response),
+    (Response == yes ->
+        assertz(symptom(Symptom));
+        fail).
