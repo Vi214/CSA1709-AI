@@ -1,0 +1,19 @@
+% Facts: disease and recommended diet
+diet_recommendation(diabetes, [low_sugar, high_fiber, whole_grains, vegetables, lean_protein]).
+diet_recommendation(hypertension, [low_sodium, high_potassium, fruits, vegetables, whole_grains]).
+diet_recommendation(obesity, [low_calorie, high_protein, vegetables, fruits, whole_grains]).
+diet_recommendation(anemia, [iron_rich, vitamin_c, leafy_greens, red_meat, legumes]).
+diet_recommendation(cardiovascular, [low_fat, high_fiber, omega_3, fruits, vegetables]).
+diet_recommendation(kidney_disease, [low_protein, low_sodium, low_potassium, controlled_fluids]).
+
+% Rule to get diet recommendation based on disease
+recommend_diet(Disease, Diet) :-
+    diet_recommendation(Disease, Diet).
+
+% User interface
+start :-
+    write('Enter the disease: '),
+    read(Disease),
+    (recommend_diet(Disease, Diet) ->
+        format('Recommended diet for ~w: ~w~n', [Disease, Diet]);
+        write('Sorry, no recommendation found for that disease.'), nl).
