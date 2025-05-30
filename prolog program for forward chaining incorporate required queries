@@ -1,0 +1,56 @@
+% Define dynamic predicates
+:- dynamic fact/1.
+
+% Rules (if these symptoms exist, infer the disease)
+rule(cold) :-
+    fact(cough),
+    fact(sneezing),
+    fact(runny_nose),
+    assertz(fact(cold)).
+
+rule(flu) :-
+    fact(fever),
+    fact(cough),
+    fact(headache),
+    fact(body_ache),
+    assertz(fact(flu)).
+
+rule(covid19) :-
+    fact(fever),
+    fact(cough),
+    fact(loss_of_taste_or_smell),
+    assertz(fact(covid19)).
+
+% Forward chaining engine
+forward_chain :-
+    rule(_),          % Try applying a rule
+    fail.             % Force backtracking to apply all possible rules
+forward_chain.        % Succeed after applying all rules
+
+% User input for known symptoms
+start :-
+    retractall(fact(_)),
+    write('Forward Chaining Medical Diagnosis System'), nl,
+    ask_symptoms,
+    forward_chain,
+    list_diagnosis.
+
+% Ask for a list of symptoms
+ask_symptoms :-
+    Symptoms = [cough, sneezing, runny_nose, fever, headache, body_ache, loss_of_taste_or_smell],
+    ask_all(Symptoms).
+
+ask_all([]).
+ask_all([S|Rest]) :-
+    format('Do you have ~w? (yes/no): ', [S]),
+    read(Reply),
+    (Reply == yes -> assertz(fact(S)); true),
+    ask_all(Rest).
+
+% Output possible diagnosis
+list_diagnosis :-
+    (fact(cold) -> write('Diagnosis: cold'), nl; true),
+    (fact(flu) -> write('Diagnosis: flu'), nl; true),
+    (fact(covid19) -> write('Diagnosis: covid19'), nl; true),
+    ( \+ fact(cold), \+ fact(flu), \+ fact(covid19) ->
+        write('No diagnosis could be made.'), nl; true).
