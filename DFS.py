@@ -71,3 +71,18 @@ if __name__ == '__main__':
         print(f"Total cost: {cost}")
     else:
         print(f"No path found from {start_node} to {goal_node}")
+
+output:
+Explored Tree:
+Level 0: A
+Level 1: B(cost:5), C(cost:2)
+Level 2: D(cost:4), E(cost:1)
+Level 3: F(cost:3)
+
+Level 4: 
+
+Goal F found!
+Path from A to F: ['A', 'C', 'F']
+Total cost: 5
+
+
