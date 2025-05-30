@@ -105,3 +105,12 @@ if __name__ == '__main__':
             print("---")
     else:
         print("No solution found.")
+
+output:
+Solution found:
+Move: right
+(1, 2, 3)
+(8, 4, 0)
+(7, 6, 5)
+
+
